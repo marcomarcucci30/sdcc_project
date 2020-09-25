@@ -1,0 +1,117 @@
+<!doctype html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<html lang="en">
+  <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script>
+		$(document).ready(function(){
+			$('#slct-image').on('click', function() {
+				$('#my-file	').trigger('click');
+			});
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						$('#img_icon').attr('src', e.target.result);
+					}
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+
+			$("#my-file").change(function(){
+				readURL(this);
+			});
+		});
+
+	  </script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Health Care application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+    <!-- Custom styles for this template -->
+    <link href="/static/dashboard.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand back" href="/index">←</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <!--<form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>-->
+		  <ul class="nav navbar-nav navbar-right">
+            <output id=area-patient type="text">{{ area }}</output>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+	<div class="background-patient">
+		<div class="container-fluid">
+			<div class="box">
+			  <h1>Clinical situation</h1>
+			    <div class="info">
+				    <img id="img_icon" src="/static/user.png" alt="Patient1">
+					<button type="button" id="slct-image" class="btn btn-default" aria-label="Left Align">
+						<span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+					</button>
+					<input type="file" onchange="readURL(this);" name="my_file" id="my-file">
+					<h2 id="patient">{{ namePatient }} {{ surnamePatient }}</h2>
+					<h2 id="id">ID: {{ id }}</h2>
+				</div>
+				<table id="table_pat" class="table">
+				  <thead>
+					<tr>
+					  <th>Glucose</th>
+					  <th>Blood Pressure</th>
+					  <th>Insulin</th>
+					  <th>BMI</th>
+					  <th>Skin Thickness</th>
+					  <th>Age</th>
+					  <th>Outcome</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <td>{{ glucose }}</td>
+					  <td>{{ bloodPressure }}</td>
+					  <td>{{ insulin }}</td>
+					  <td>{{ bmi }}</td>
+					  <td>{{ skin }}</td>
+					  <td>{{ age }}</td>
+					  <td>{{ outcome }}</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+

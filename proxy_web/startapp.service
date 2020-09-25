@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple systemd service for minikubeapp deployment.
+[Service]
+Type=forking
+WorkingDirectory=/home/ubuntu/ec2-user/project/proxy_web
+ExecStart=/bin/bash /home/ubuntu/ec2-user/project/proxy_web/run_root.sh
+TimeoutStartSec=300
+User=ubuntu
+[Install]
+WantedBy=multi-user.target

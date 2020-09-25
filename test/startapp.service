@@ -1,0 +1,10 @@
+[Unit]
+Description=iot.
+[Service]
+Type=forking
+WorkingDirectory=/home/ubuntu/ec2-user/project/iot
+ExecStart=/bin/bash /home/ubuntu/ec2-user/project/iot/run_iot.sh
+TimeoutStartSec=900
+User=ubuntu
+[Install]
+WantedBy=multi-user.target

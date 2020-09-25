@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="mydb@localhost" uuid="1786150d-2b54-49b1-9d38-baf20da5bacc">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mydb</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="mydb@fog.csfllrlhtvq7.us-east-1.rds.amazonaws.com" uuid="bcc84c55-d143-425e-818d-9f9a3154a13a">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://fog.csfllrlhtvq7.us-east-1.rds.amazonaws.com:3306/mydb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="mydb@cloud.csfllrlhtvq7.us-east-1.rds.amazonaws.com" uuid="1d2028c4-90e7-4358-ba7b-f720fbffaba7">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://cloud.csfllrlhtvq7.us-east-1.rds.amazonaws.com:3306/mydb</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Cloud" uuid="5f1fcb7d-cf95-4daa-8cc6-cf0fe2efc1c2">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://idcloud.csfllrlhtvq7.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="FogA" uuid="ea53db40-9d90-4310-9280-4749311ad01e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://ida.csfllrlhtvq7.us-east-1.rds.amazonaws.com:3306</jdbc-url>
+    </data-source>
+  </component>
+</project>

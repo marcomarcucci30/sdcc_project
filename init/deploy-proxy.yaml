@@ -1,0 +1,48 @@
+---
+- hosts: all
+  vars:
+    local_app_dir: "../proxy_web"
+    remote_home: "/ec2-user"
+    remote_app_dir: "{{ remote_home }}/project"
+  gather_facts: false
+  pre_tasks:
+    - name: Wait 600 seconds for target connection to become reachable/usable
+      wait_for_connection:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python
+    - name: 'install unzip'
+      raw: sudo apt-get -y install unzip
+  tasks:
+
+    
+    - name: copy zip file
+      copy:
+        src: "../proxy_web.zip"
+        dest: "~{{ remote_app_dir }}/"
+    
+
+        
+    - name: unzip
+      script: "./unzip_proxy.sh"
+
+
+    - name: copy config file
+      copy:
+        src: "./config.json"
+        dest: "~{{ remote_app_dir }}/proxy_web/config"
+    - name: install requirements
+      script: "{{ local_app_dir }}/install.sh"
+
+    - name: copy systemd unit file
+      become: yes
+      copy:
+        src: "{{ local_app_dir }}/startapp.service"
+        dest: "/etc/systemd/system/"
+    - name: enable and start systemd service
+      become: yes
+      systemd:
+        daemon_reload: yes
+        state: started
+        name: "startapp.service"
+        enabled: yes
+        

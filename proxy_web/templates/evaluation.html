@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var area = $('#invisible-area').text()
+		console.log(area);
+		if (area != ""){
+			$('#invisible-area').fadeOut();
+			var last = area.substring(area.length - 1);
+			$("#"+last).prop("checked", true);
+		}
+	});
+
+	$(document).ready(function(){
+		$('#addBtn').click(function() {
+			if ($('#res').val() == '' || $('#res').val() == 'Prediction not available, try later.') {
+				$('#error').val('You must evaluate the patient before!');
+				return false;
+			}
+			else {
+				$('#error').val('');
+			}
+		});
+	    $('#evaluateBtn').click(function() {
+		  	if (!$("input[name='optradio']:checked").val()) {
+		  		$('#error').val('No area is checked!');
+				return false;
+			}
+			var emptyText = true;
+			var emptyNumber = true;
+			var emptyDate = true;
+			$('input[type="text"]').each(function(){
+			   if($(this).val()==""){
+				  emptyText =false;
+				}
+			 });
+			 $('input[type="date"]').each(function(){
+			 console.log($('#date').val());
+			   if($(this).val()==""){
+			   	  console.log('ciao');
+				  emptyDate =false;
+				}
+			 });
+			 $('input[type="number"]').each(function(){
+			   if($(this).val()==""){
+				  emptyNumber =false;
+				}
+			 });
+
+			if (emptyText == false || emptyNumber == false || emptyDate == false){
+				console.log(emptyText);
+				console.log(emptyNumber);
+		  		//alert('All inputs must be inserted!');
+		  		$('#error').val('All inputs must be inserted!')
+		  		return false;
+			}
+
+			var glucose = parseInt($('#glucose').val());
+			var blood = parseInt($('#bloodPressure').val());
+			var insulin = parseInt($('#insulin').val());
+			var bmi = parseInt($('#bmi').val());
+			var skin = parseInt($('#skin').val());
+			if ((glucose < 35 || glucose >500) ||
+			 (blood <30 || blood >120) ||
+			 (insulin <6 || insulin >60) ||
+             (bmi <16 || bmi >40) ||
+             (skin <10 || skin >99)){
+             	$('#error').val('Some clinical values are out of possible range!');
+             	if (glucose < 35 || glucose >500){
+             		$('#glucose').val("");
+             	}
+             	if (blood <30 || blood >120){
+             		$('#bloodPressure').val("");
+             	}
+             	if (insulin <6 || insulin >60){
+             		$('#insulin').val("");
+             	}
+             	if (bmi <16 || bmi >40){
+             		$('#bmi').val("");
+             	}
+             	if (skin <10 || skin >99){
+             		$('#skin').val("");
+             	}
+             	return false;
+             }
+	  	});
+	});
+
+	</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Health Care application</title>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+
+    <!-- Custom styles for this template -->
+    <link href="/static/dashboard.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Healthcare</a>
+        </div>
+      </div>
+    </nav>
+
+	<div class="col-sm-3 col-md-2 sidebar">
+	  <ul class="nav nav-sidebar">
+		<li><a href="/index">Overview <span class="sr-only">(current)</span></a></li>
+		<li  class="active"><a href="#">Evaluation</a></li>
+	  </ul>
+	</div>
+
+	{% block content %}
+	<div class="background-evaluation">
+		{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+		</div>
+		{% endfor %}
+    	{% block page_content %}{% endblock %}
+	  <div class="evaluation">
+		<form action="/evaluation" method="POST" role="form">
+		   <div class="inputs">
+			<div class="patients">
+
+				<h3 class="patient-font">Patient</h3>
+
+				<input name="name" placeholder="Name" type="text" value="{{ name }}"/>
+				<input name="surname" placeholder="Surname" type="text" value="{{ surname }}"/>
+				<input name="bday" id=date type="date" value="{{ date }}"/>
+				<p name="area" id="invisible-area">{{ area }}</p>
+				<p>Select patient area:</p>
+				<div class="radio-form" id="radioForm">
+					<label class="radio-inline">
+					  <input type="radio" name="optradio" id="A" value="Area A">Area A
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="optradio" id="B" value="Area B">Area B
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="optradio" id="C" value="Area C">Area C
+					</label>
+				</div>
+
+			</div>
+			<div class="features">
+				<h3 class="features-font">Clinical situation</h3>
+
+					<input type="number" id="glucose" name="glucose" placeholder="Glucose (35,500)" value="{{ glucose }}">
+					<input type="number" id="bloodPressure" name="bloodPressure" placeholder="Blood Pressure (30, 120)" value="{{ bloodPressure }}"/>
+					<input type="number" id="insulin" name="insulin" placeholder="Insulin (6, 60)" value="{{ insulin }}"/>
+					<input type="number" id="bmi" name="bmi" placeholder="BMI (16, 40)" value="{{ bmi }}"/>
+					<input type="number" id="skin" name="skin" placeholder="Skin Thickness (10, 99)" value="{{ skin }}"/>
+					<div class="btn-group">
+						<button ID="evaluateBtn" name="subButton" type="submit" value="evaluate" class="btn btn-primary">Evaluate</button>
+					</div>
+			</div>
+		  </div>
+
+	  <div class="input-group">
+			<span class="input-group-addon" id="result">Result:</span>
+		  <output id="res" class="form-control">{{ result }}</output>
+	  </div>
+			<div><output id="error"></output>{{ error }}</div>
+	  <div class="add">
+			  <button id="addBtn" type="submit" name="subButton" value="add" class="btn btn-default">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			  </button> Click here to add this patient to your list
+	  </div>
+	 </form>
+	 </div>
+
+	</div>
+	{% endblock %}
+  </body>

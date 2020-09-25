@@ -1,0 +1,160 @@
+/* stylelint-disable property-no-vendor-prefix */
+
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  font-size: 15px;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+.btn {
+  position: absolute;
+  right:15%;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, .5);
+}
+@font-face {
+  font-family: "Brush Script MT";
+  src: url("/static/font/BRUSHSCI.ttf");
+}
+
+.healthfont{
+  color: #26aae1;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  font-family: "Brush Script MT";
+  font-size: 45px;
+  
+}
+
+.site-wrapper h4 {
+  color: #636363;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 50px;
+  
+}
+
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: 700;
+}
+
+.form-control {
+  background-color: #333;
+  border: 1.5px solid #fff;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-control:focus {
+  z-index: 2;
+}
+
+.form-signin {
+  position: absolute;
+  bottom: 25%;
+  left:35%;
+}
+.form-signin input[type="password"]{
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.form-signin img {
+  display: inline-block;
+  border-radius: 10%;
+  margin-bottom: 20px;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .site-wrapper-inner {
+    vertical-align: middle; /* Start the vertical centering */
+  }
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .cover-container {
+    width: 400px;
+  }
+}
+
+#error{
+    color: red;
+    font-size:18px;
+}

@@ -1,0 +1,53 @@
+---
+- hosts: all
+  vars:
+    local_app_dir: "../test"
+    remote_home: "/ec2-user"
+    remote_app_dir: "{{ remote_home }}/project"
+  gather_facts: false
+  pre_tasks:
+    - name: Wait 600 seconds for target connection to become reachable/usable
+      wait_for_connection:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python
+  tasks:
+    - name: copy config
+      copy:
+        src: "../test/config"
+        dest: "~{{ remote_app_dir }}/iot"
+    - name: copy config file
+      copy:
+        src: "./config.json"
+        dest: "~{{ remote_app_dir }}/iot/config"
+    - name: copy iot.py
+      copy:
+        src: "../test/test_iot.py"
+        dest: "~{{ remote_app_dir }}/iot"
+    - name: copy iot.py
+      copy:
+        src: "./run_iot.sh"
+        dest: "~{{ remote_app_dir }}/iot"
+    - name: copy systemd unit file
+      become: yes
+      copy:
+        src: "../test/startapp.service"
+        dest: "/etc/systemd/system/"
+
+    - name: install requirements and run
+      script: "./install_iot.sh"
+    - name: Reboot host and wait for it to restart
+      become: yes
+      reboot:
+        msg: "Reboot initiated by Ansible"
+        connect_timeout: 5
+        reboot_timeout: 600
+        pre_reboot_delay: 0
+        post_reboot_delay: 30
+        test_command: whoami
+    - name: enable and start systemd service
+      become: yes
+      systemd:
+        daemon_reload: yes
+        state: started
+        name: "startapp.service"
+        enabled: yes

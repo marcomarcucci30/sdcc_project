@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: exampleservice
+spec:
+  selector:
+    app: myapp
+  ports:
+  # Porta accessibile all'interno del cluster dagli altri Pod
+  - targetPort: 8001
+    
+    # Porta accessibile all'esterno
+    port: 30005
+  type: LoadBalancer

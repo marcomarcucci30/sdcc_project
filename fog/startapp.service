@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple systemd service for minikubeapp deployment.
+[Service]
+Type=forking
+WorkingDirectory=/home/ubuntu/ec2-user/project/fog
+ExecStart=/bin/bash /home/ubuntu/ec2-user/project/fog/run_root.sh
+TimeoutStartSec=900
+User=ubuntu
+[Install]
+WantedBy=multi-user.target

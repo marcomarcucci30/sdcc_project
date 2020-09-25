@@ -1,0 +1,457 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+.navbar-form {
+  display: inline-block;
+}
+
+@font-face {
+  font-family: "Brush Script MT";
+  src: url("/static/font/BRUSHSCI.ttf");
+}
+
+.navbar-brand {
+  font-size: 35px;
+  font-family: "Brush Script MT";
+}
+
+.area-output{
+  position: absolute;
+  right: 250px;
+  font-size: 20px;
+}
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+  }
+}
+.navbar-right {
+  display: inline;
+}
+.form-control {
+	margin-right: 20px;
+    margin-top: 0px;
+}
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+  margin-top: 30px;
+}
+.description {
+  padding-left: 40px;
+}
+.back {
+  font-size:30px;
+}  
+  
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+	
+  }
+}
+.main{
+  margin-top: 0;
+}
+
+@font-face {
+    font-family: 'Avant Garde Book BT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Avant Garde Book BT'), url('/static/font/AVGARDN_2.woff') format('woff');
+}
+
+@font-face {
+  font-family: "Lucida Sans";
+  src: url("/static/font/LSANS.woff");
+}
+
+.page-header {
+  margin-top: 10px;
+  font-family: "Lucida Sans";
+  font-size: 25px;
+  color: #5799a8;
+  
+}
+
+.patient-font {
+  margin-bottom: 28px;
+  margin-top: 33px;
+  text-align: center;
+  font-size: 25px;
+  color: #5799a8;
+  font-family: "Lucida Sans";
+  font-weight: bold;
+}
+
+
+.features-font {
+  margin-bottom: 28px;
+  margin-top: 33px;
+  text-align: center;
+  font-size: 22px;
+  color: #fff;
+  font-family: "Lucida Sans";
+  font-weight: bold;
+}
+.background-evaluation {
+  background-image: url("/static/1017.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  left: 250px;
+  right: 0;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border: 1px solid #eee;
+}
+
+.background-overview {
+    background-image: url("/static/1017.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border: 1px solid #eee;
+ }
+
+ .background-patient{
+	background-image: url("/static/279.jpg");
+	background-size: cover;
+	-webkit-backgroud-size: cover;
+	-moz-backgroud-size: cover;
+	-o-backgroud-size: cover;
+	position:fixed;
+	top:50px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	display: block;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+	border: 1px solid #eee;
+}
+
+.evaluation {
+   position: relative;
+   left:20px;
+   top: 50px;
+   bottom:50px;
+   width: 520px;
+}
+
+.inputs {
+   position: relative;
+   left: 0px;
+   top: 0px;
+   height: 320px;
+}
+
+.patients {
+   background-color: #fff;
+   float: left;
+   left: 0;
+   width: 250px;
+   border: 2px solid #5799a8;
+}
+
+.features {
+   background-color: #5799a8;
+   float: left;
+   margin-left: 20px;
+   width: 250px;
+   border: 2px solid #fff;
+}
+
+.patients p{
+	margin-top: 22px;
+	text-align: center;
+	font-size: 15px;
+	margin-bottom: 15px;
+}
+
+.box {
+	position: absolute;
+	background-color: rgba(241,253,251,0.5);
+	top: 150px;
+	left: 100px;
+	height:600px;
+	border: 2px solid #288499;
+	border-radius: 2%;
+}
+
+.box h1 {
+	position:relative;
+	left:30px;
+	font-family: 'Avant Garde Book BT', sans-serif;
+	color: #288499;
+}
+
+.info {
+	position:relative;
+	left:30px;
+	right:30px;
+	top:30px;
+}
+
+.info img{
+	width:250px;
+	height:250px;
+}
+
+.info button{
+	position:relative;
+	border-radius: 35%;
+	left:-40px;
+	border: 1px solid #288499;
+	color: #288499;
+	top:95px;
+}
+
+.info h2{
+	font-family: 'Avant Garde Book BT', sans-serif;
+	position:relative;
+	text-align:center;
+	left:80px;
+	bottom:200px;
+}
+
+#invisible-area{
+    display:none;
+}
+
+#my-file{
+	visibility: hidden;
+}
+
+#error{
+    margin-top: 30px;
+    color: red;
+    font-size:18px;
+}
+.radio-form{
+	text-align: center;
+	font-size: 13px;
+	margin-bottom: 43px;
+}
+
+
+#table_pat {
+    position:relative;
+    bottom:0px;
+    border-collapse: collapse;
+}
+
+#table_pat thead{
+    color: #07596b;
+}
+
+#table_pat tr{
+    text-align: center;
+    font-size:20px;
+    height:60px;
+    border-top: 2px solid #288499;
+    background-color: rgba(168, 204, 214, 0);
+}
+#table_pat th{
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+#table_pat td{
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+#table_pat tr td:first-child,
+#table_pat tr th:first-child {
+  border-left: 0;
+}
+
+#table_over {
+	width: 600px;
+	border: 3px solid #eee;
+}
+
+
+#table_over thead{
+  background-color: #529aad;
+}
+
+#table_over  tr:nth-child(even){
+  background-color: #eee;
+}
+
+#table_over  tr:nth-child(odd){
+  background-color: rgba(168, 204, 214, 0.5);
+}
+
+#area-patient {
+    position:absolute;
+    font-size: 20px;
+    right: 30px;
+}
+
+input[type=number]{
+  outline: 0;
+  margin-left: 7%;
+  border-width: 0 0 2px;
+  padding: 5px 5px;
+  border-color: #fff;
+  font-size:15px;
+  background-color: #5799a8;
+  color: #fff;
+}
+input[type=number]:focus {
+  border-color: #fff;
+}
+input[type=number]::placeholder {
+  color: #c8e0e4;
+}
+input {
+  outline: 0;
+  margin-left: 7%;
+  border-width: 0 0 2px;
+  padding: 5px 5px;
+  border-color: #5799a8;
+  font-size:15px;
+}
+
+
+input:focus {
+  border-color: #5799a8;
+}
+
+.input-group{
+  position: relative;
+  left: 0;
+  margin-top: 10px;
+  
+}
+
+.input-group-addon {
+	background-color: #5799a8;
+	color: #fff;
+	border: 2px solid #c8e0e4;
+}
+.form-control {
+	position: relative;
+	left: 0;
+	border: 2px solid #c8e0e4;
+}
+.add {
+	left:0px;
+	margin-top: 80px;
+	font-size: 17px;
+}
+.add span {
+	color: #5799a8;
+}
+.add button {
+	border-color: transparent;
+	font-size: 20px;
+	background-color: transparent;
+}
+
+.btn-group {
+	margin-left: 33%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: myapp
+  name: myappdeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: hellonode:v1
+          resources:
+            limits:
+              cpu: 500m
+              memory: "500Mi"
+            requests:
+              cpu: 100m
+              memory: "200Mi"
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 8001

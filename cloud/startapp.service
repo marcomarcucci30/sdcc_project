@@ -1,0 +1,10 @@
+[Unit]
+Description=Simple systemd service for minikubeapp deployment.
+[Service]
+Type=forking
+WorkingDirectory=/home/ubuntu/ec2-user/project/cloud
+ExecStart=/bin/bash /home/ubuntu/ec2-user/project/cloud/run_root.sh
+TimeoutStartSec=300
+User=ubuntu
+[Install]
+WantedBy=multi-user.target
