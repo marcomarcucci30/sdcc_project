@@ -982,7 +982,7 @@ def create_image_fog(ec2, ec2_client, subnet_a, sec_group_a, log):
     with open("hosts_fog.ini", "r") as file:
         lines = file.readlines()
     lines[1] = ip_address + " ansible_user='ubuntu' ansible_ssh_private_key_file=" \
-                            "'~/Scrivania/SDCCKeyPair.pem'" + "\n"
+                            "'./SDCCKeyPair.pem'" + "\n"
     file.close()
     with open("hosts_fog.ini", "w") as file:
         for line in lines:
@@ -1048,7 +1048,7 @@ def create_image_cloud(ec2, ec2_client, subnet_cloud, sec_group_cloud, log):
     with open("hosts_cloud.ini", "r") as file:
         lines = file.readlines()
     lines[1] = ip_address + " ansible_user='ubuntu' ansible_ssh_private_key_file=" \
-                            "'~/Scrivania/SDCCKeyPair.pem'" + "\n"
+                            "'./SDCCKeyPair.pem'" + "\n"
     file.close()
     with open("hosts_cloud.ini", "w") as file:
         for line in lines:
@@ -1120,7 +1120,7 @@ def crete_image_proxy(ec2, ec2_client, subnet_proxy, sec_group_proxy, log):
     with open("hosts_proxy.ini", "r") as file:
         lines = file.readlines()
     lines[1] = ip_address + " ansible_user='ubuntu' ansible_ssh_private_key_file=" \
-                            "'~/Scrivania/SDCCKeyPair.pem'" + "\n"
+                            "'./SDCCKeyPair.pem'" + "\n"
     file.close()
     with open("hosts_proxy.ini", "w") as file:
         for line in lines:

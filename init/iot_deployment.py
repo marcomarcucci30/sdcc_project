@@ -38,7 +38,7 @@ def create_iot(n_iot, iot_spawn_rate):
     with open("hosts_iot.ini", "r") as file:
         lines = file.readlines()
     lines[1] = ip_address + " ansible_user='ubuntu' ansible_ssh_private_key_file=" \
-                            "'~/Scrivania/SDCCKeyPair.pem'" + "\n"
+                            "'./SDCCKeyPair.pem'" + "\n"
     file.close()
     with open("hosts_iot.ini", "w") as file:
         for line in lines:
