@@ -11,33 +11,27 @@ def test():
 
     response = client_as.describe_auto_scaling_instances()
     """list_a = []
-    
+
     for instance in response['AutoScalingInstances']:
         if instance['AutoScalingGroupName'] == 'areaAasg':
             list_a.append(instance)"""
 
     print("Number of instance before deleting: ", len(response['AutoScalingInstances']))
     id_instance = response['AutoScalingInstances'][0]['InstanceId']
+    ec2.instances.filter(InstanceIds=(id_instance,)).terminate()
+
+    response = client_as.describe_auto_scaling_instances()
     print("Deleting instance...")
-    ec2.instances.filter(InstanceIds=id_instance).terminate()
-
-    response = client_as.describe_auto_scaling_instances()
-    while len(response['AutoScalingInstances']) == 6:
-        print("Deleting instance...")
-        sleep(5)
+    while len(response['AutoScalingInstances']) == 8:
+        sleep(0.5)
         response = client_as.describe_auto_scaling_instances()
 
-    response = client_as.describe_auto_scaling_instances()
-    print("Number of instances after deleting:", len(response['AutoScalingInstances']))
+    print("Waiting autoscaler create instance...")
+
+    sleep(30)
 
     response = client_as.describe_auto_scaling_instances()
-    while len(response['AutoScalingInstances']) == 5:
-        print("Waiting autoscaler create instance...")
-        sleep(5)
-        response = client_as.describe_auto_scaling_instances()
-
-    response = client_as.describe_auto_scaling_instances()
-    print("Now, the number of instances are: ", len(response['AutoScalingInstances']))
+    print("Number of instances after test is: ", len(response['AutoScalingInstances']))
 
 
 if __name__ == '__main__':
