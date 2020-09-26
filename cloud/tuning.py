@@ -9,6 +9,13 @@ joblib_path = pathlib.Path(__file__).parent / 'best_classifier.joblib'
 
 
 def tuning_handler():
+    """
+    function that takes care of creating a thread every few seconds for data tuning
+
+    Returns:
+
+    """
+
     while True:
         time.sleep(60)
         try:
@@ -18,6 +25,12 @@ def tuning_handler():
 
 
 def tuning():
+    """
+    thread that deals with tuning on the measurements in the database and send results to fog
+
+    Returns:
+
+    """
     print(threading.current_thread().ident)
     if check_for_ml() > 1000:
         training_best_configuration.main()

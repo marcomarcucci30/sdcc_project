@@ -14,6 +14,12 @@ app = Flask(__name__)
 # route for database storage
 @app.route('/storage', methods=['POST'])
 def storage_handler():
+    """
+    function that takes care of saving patient measurements received from fog nodes
+
+    Returns: string that confirms the insertion or not
+
+    """
     print(request.is_json)
     content = request.get_json()
     timestamp = content["timestamp"]
@@ -35,6 +41,12 @@ def storage_handler():
 # route ping
 @app.route('/ping', methods=['POST', 'GET'])
 def ping():
+    """
+    function that allows the load balancer to check the health of the instance
+
+    Returns: Pong string
+
+    """
     return "Pong\n"
 
 

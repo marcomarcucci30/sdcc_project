@@ -21,6 +21,15 @@ INSERT_JOBLIB = "INSERT INTO joblib values (0, %s)"
 
 
 def update_joblib(area):
+    """
+    function that takes care of sending the result of the tuning to the fog
+
+    Args:
+        area: fog area
+
+    Returns:
+
+    """
     db = connect(area)
     cursor = db.cursor()
     cursor.execute(CHECK_JOBLIB)
@@ -37,6 +46,15 @@ def update_joblib(area):
 
 
 def connect(area):
+    """
+    function that returns the connection to the fog or cloud database
+
+    Args:
+        area: fog or cloud area
+
+    Returns: Database connection
+
+    """
     if area == "Cloud":
         db = mysql.connect(
             host=config['cloud']['db'],
@@ -59,6 +77,12 @@ def connect(area):
 
 
 def check_for_ml():
+    """
+    function that returns the number of measurements in the Cloud Database
+
+    Returns: number of rows
+
+    """
     db = connect('Cloud')
     cursor = db.cursor()
     cursor.execute(CHECK_TOTAL)
@@ -69,6 +93,16 @@ def check_for_ml():
 
 
 def retrieve_rows(timestamp, area):
+    """
+    function that returns the measurements prior to a given time in the database of a given fog
+
+    Args:
+        timestamp: time to be considered for query
+        area: fog area
+
+    Returns: number of rows
+
+    """
     db = connect(area)
     cursor = db.cursor()
     cursor.execute(RETRIEVE_ROWS, (timestamp,))
@@ -79,6 +113,17 @@ def retrieve_rows(timestamp, area):
 
 
 def check_rows(timestamp, area):
+    """
+    function that returns the number of measurements prior to a given time in the database of a given fog to
+    compare with a fixed number
+
+    Args:
+        timestamp: time to be considered for query
+        area: fog area
+
+    Returns: True if number of rows is greater than a fixed number, False otherwise
+
+    """
     db = connect(area)
     cursor = db.cursor()
     cursor.execute(CHECK_INSTANCES, (timestamp,))
@@ -91,6 +136,15 @@ def check_rows(timestamp, area):
 
 
 def insert_rows(rows):
+    """
+    function that deletes the measurements before a given moment from the fog database
+
+    Args:
+        rows: list of measurements
+
+    Returns: True if successful, False otherwise
+
+    """
     db = connect('Cloud')
     cursor = db.cursor()
     try:
@@ -126,6 +180,15 @@ def insert_rows(rows):
 
 
 def delete_rows(timestamp, area):
+    """
+    function that deletes
+
+    Args:
+        timestamp: time to be considered for query
+        area: fog's area
+    Returns: True if successful, False otherwise
+
+    """
     db = connect(area)
     cursor = db.cursor()
     try:
